@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"testing"
 
-	"github.com/goccy/go-zetasqlite"
-	_ "github.com/goccy/go-zetasqlite"
+	"github.com/marcellustavares/go-zetasqlite"
+	_ "github.com/marcellustavares/go-zetasqlite"
 )
 
 func TestDriver(t *testing.T) {
