@@ -1274,14 +1274,14 @@ func (n *ProjectScanNode) FormatSQL(ctx context.Context) (string, error) {
 			return "", err
 		}
 	}
-	input, err := newNode(n.node.InputScan()).FormatSQL(ctx)
+	input, err := newNode(n.node.InputScan()).FormatSQL(withUseColumnID(ctx))
 	if err != nil {
 		return "", err
 	}
 	columns := []string{}
 	columnMap := columnRefMap(ctx)
 	for _, col := range n.node.ColumnList() {
-		colName := uniqueColumnName(ctx, col)
+		colName := uniqueColumnName(withUseColumnID(ctx), col)
 		if ref, exists := columnMap[colName]; exists {
 			columns = append(columns, ref)
 			delete(columnMap, colName)
