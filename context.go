@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/goccy/go-zetasqlite/internal"
+	"github.com/marcellustavares/go-zetasqlite/internal"
 )
 
 // WithCurrentTime use to replace the current time with the specified time.

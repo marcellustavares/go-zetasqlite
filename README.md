@@ -1,15 +1,15 @@
 # go-zetasqlite
 
-![Go](https://github.com/goccy/go-zetasqlite/workflows/Go/badge.svg)
-[![GoDoc](https://godoc.org/github.com/goccy/go-zetasqlite?status.svg)](https://pkg.go.dev/github.com/goccy/go-zetasqlite?tab=doc)
-[![codecov](https://codecov.io/gh/goccy/go-zetasqlite/branch/main/graph/badge.svg)](https://codecov.io/gh/goccy/go-zetasqlite)
+![Go](https://github.com/marcellustavares/go-zetasqlite/workflows/Go/badge.svg)
+[![GoDoc](https://godoc.org/github.com/marcellustavares/go-zetasqlite?status.svg)](https://pkg.go.dev/github.com/marcellustavares/go-zetasqlite?tab=doc)
+[![codecov](https://codecov.io/gh/marcellustavares/go-zetasqlite/branch/main/graph/badge.svg)](https://codecov.io/gh/marcellustavares/go-zetasqlite)
 
 A database driver library that interprets ZetaSQL queries and runs them using SQLite3
 
 # Features
 
 `go-zetasqlite` supports `database/sql` driver interface.
-So, you can use ZetaSQL queries just by importing `github.com/goccy/go-zetasqlite`.
+So, you can use ZetaSQL queries just by importing `github.com/marcellustavares/go-zetasqlite`.
 Also, go-zetasqlite uses SQLite3 as the database engine.
 Since we are using [go-sqlite3](https://github.com/mattn/go-sqlite3), we can use the options ( like `:memory:` ) supported by `go-sqlite3` ( see [details](https://pkg.go.dev/github.com/mattn/go-sqlite3#readme-connection-string) ).
 ZetaSQL functionality is provided by [go-zetasql](https://github.com/goccy/go-zetasql)
@@ -17,7 +17,7 @@ ZetaSQL functionality is provided by [go-zetasql](https://github.com/goccy/go-ze
 # Installation
 
 ```
-go get github.com/goccy/go-zetasqlite
+go get github.com/marcellustavares/go-zetasqlite
 ```
 
 ## **NOTE**
@@ -40,7 +40,7 @@ import (
   "database/sql"
   "fmt"
 
-  _ "github.com/goccy/go-zetasqlite"
+  _ "github.com/marcellustavares/go-zetasqlite"
 )
 
 func main() {
@@ -70,7 +70,7 @@ func main() {
 
 ## ZetaSQLite CLI
 
-You can execute ZetaSQL queries interactively by using the tools provided by `cmd/zetasqlite-cli`. See [here](https://github.com/goccy/go-zetasqlite/tree/main/cmd/zetasqlite-cli#readme) for details
+You can execute ZetaSQL queries interactively by using the tools provided by `cmd/zetasqlite-cli`. See [here](https://github.com/marcellustavares/go-zetasqlite/tree/main/cmd/zetasqlite-cli#readme) for details
 
 # Status
 
