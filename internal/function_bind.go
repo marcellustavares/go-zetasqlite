@@ -1682,7 +1682,12 @@ func bindRound(args ...Value) (Value, error) {
 	if existsNull(args) {
 		return nil, nil
 	}
-	return ROUND(args[0])
+
+	if len(args) > 1 {
+		return ROUND(args[0], args[1])
+	}
+
+	return ROUND(args[0], nil)
 }
 
 func bindTrunc(args ...Value) (Value, error) {

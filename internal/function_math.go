@@ -260,12 +260,23 @@ func MOD(x, y Value) (Value, error) {
 	return FloatValue(math.Mod(xv, yv)), nil
 }
 
-func ROUND(x Value) (Value, error) {
+func ROUND(x Value, y Value) (Value, error) {
 	xv, err := x.ToFloat64()
 	if err != nil {
 		return nil, err
 	}
-	return FloatValue(math.Round(xv)), nil
+
+	precision := 0.0
+
+	if y != nil {
+		precision, err = y.ToFloat64()
+
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return FloatValue(math.Round(xv*math.Pow(10, precision)) / math.Pow(10, precision)), nil
 }
 
 func TRUNC(x Value) (Value, error) {

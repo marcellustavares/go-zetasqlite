@@ -4189,6 +4189,22 @@ SELECT
 			expectedRows: [][]interface{}{{"dummy"}},
 		},
 
+		// math functions
+		{
+			name:         "round_integer 1",
+			query:        `SELECT ROUND(3500.233, -3) AS rounded_value`,
+			expectedRows: [][]interface{}{{float64(4000)}},
+		},
+		{
+			name:         "round_integer 2",
+			query:        `SELECT ROUND(3500.233, 0) AS rounded_value`,
+			expectedRows: [][]interface{}{{float64(3500)}},
+		},
+		{
+			name:         "round_integer 3",
+			query:        `SELECT ROUND(3500.233, 1) AS rounded_value`,
+			expectedRows: [][]interface{}{{float64(3500.2)}},
+		},
 		// uuid functions
 		{
 			name:         "generate_uuid",
