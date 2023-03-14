@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/marcellustavares/go-zetasqlite"
 	"github.com/google/go-cmp/cmp"
+	"github.com/marcellustavares/go-zetasqlite"
 )
 
 func TestQuery(t *testing.T) {
@@ -3031,8 +3031,8 @@ WITH example AS
 		},
 		{
 			name:         "lower",
-			query:        `SELECT LOWER('FOO'), LOWER('BAR'), LOWER('BAZ')`,
-			expectedRows: [][]interface{}{{"foo", "bar", "baz"}},
+			query:        `SELECT LOWER('FOO'), LOWER('BAR'), LOWER('BAZ'), LOWER(NULL)`,
+			expectedRows: [][]interface{}{{"foo", "bar", "baz", nil}},
 		},
 		{
 			name:         "ltrim",
