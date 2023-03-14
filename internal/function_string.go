@@ -415,6 +415,9 @@ func LPAD(originalValue Value, returnLength int64, pattern Value) (Value, error)
 }
 
 func LOWER(v Value) (Value, error) {
+	if v == nil {
+		return nil, nil
+	}
 	switch v.(type) {
 	case StringValue:
 		s, err := v.ToString()

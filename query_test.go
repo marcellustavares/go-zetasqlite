@@ -3083,8 +3083,8 @@ WITH example AS
 		},
 		{
 			name:         "lower",
-			query:        `SELECT LOWER('FOO'), LOWER('BAR'), LOWER('BAZ')`,
-			expectedRows: [][]interface{}{{"foo", "bar", "baz"}},
+			query:        `SELECT LOWER('FOO'), LOWER('BAR'), LOWER('BAZ'), LOWER(NULL)`,
+			expectedRows: [][]interface{}{{"foo", "bar", "baz", nil}},
 		},
 		{
 			name:         "ltrim",
