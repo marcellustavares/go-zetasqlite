@@ -3550,6 +3550,11 @@ SELECT date, EXTRACT(ISOYEAR FROM date), EXTRACT(YEAR FROM date), EXTRACT(MONTH 
 			expectedRows: [][]interface{}{{"2008-12-25"}},
 		},
 		{
+			name:         "date_trunc with hour",
+			query:        `SELECT DATE_TRUNC(TIMESTAMP "2008-12-25 20:15:25.8690Z", HOUR)`,
+			expectedRows: [][]interface{}{{"2008-12-25 20:00:00"}},
+		},
+		{
 			name:         "date_trunc with week",
 			query:        `SELECT DATE_TRUNC(DATE "2017-11-07", WEEK)`,
 			expectedRows: [][]interface{}{{"2017-11-05"}},
