@@ -4048,6 +4048,21 @@ SELECT date, EXTRACT(ISOYEAR FROM date), EXTRACT(YEAR FROM date), EXTRACT(MONTH 
 			expectedRows: [][]interface{}{{createTimestampFormatFromString("2008-12-25 07:30:00+00")}},
 		},
 		{
+			name:         "parse timestamp with %a %b %e %H:%M:%S %Z %Y (UTC)",
+			query:        `SELECT PARSE_TIMESTAMP("%a %b %e %H:%M:%S %Z %Y", "Thu Dec 25 07:30:00 UTC 2008")`,
+			expectedRows: [][]interface{}{{createTimestampFormatFromString("2008-12-25 07:30:00+00")}},
+		},
+		{
+			name:         "parse timestamp with %a %b %e %H:%M:%S %Z %Y (UTC-1)",
+			query:        `SELECT PARSE_TIMESTAMP("%a %b %e %H:%M:%S %Z %Y", "Thu Dec 25 07:30:00 UTC-1 2008")`,
+			expectedRows: [][]interface{}{{createTimestampFormatFromString("2008-12-25 06:30:00+00")}},
+		},
+		{
+			name:         "parse timestamp with %a %b %e %H:%M:%S %Z %Y (UTC+1)",
+			query:        `SELECT PARSE_TIMESTAMP("%a %b %e %H:%M:%S %Z %Y", "Thu Dec 25 07:30:00 UTC+1 2008")`,
+			expectedRows: [][]interface{}{{createTimestampFormatFromString("2008-12-25 08:30:00+00")}},
+		},
+		{
 			name:         "parse timestamp with %c",
 			query:        `SELECT PARSE_TIMESTAMP("%c", "Thu Dec 25 07:30:00 2008")`,
 			expectedRows: [][]interface{}{{createTimestampFormatFromString("2008-12-25 07:30:00+00")}},
