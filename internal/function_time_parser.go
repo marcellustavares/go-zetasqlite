@@ -1073,7 +1073,31 @@ func yearFormatter(t *time.Time) ([]rune, error) {
 }
 
 func timeZoneParser(text []rune, t *time.Time) (int, error) {
-	return 0, fmt.Errorf("unimplemented time zone matcher")
+	const zoneLen = 3;
+	if len(text) < zoneLen {
+		return 0, fmt.Errorf("unexpected time zone")
+	}
+	var offset int
+	str := string(text)
+	if strings.Contains(str, "-") {
+		pos := strings.LastIndex(str, "-") + 1
+		i, err := strconv.ParseInt(str[pos:len(str)], 10, 64)
+		if err != nil {
+			return 0, fmt.Errorf("unexpected time zone offset")
+		}
+		offset = int(-i)*60*60
+	} else if strings.Contains(str, "+") {
+		pos := strings.LastIndex(str, "+") + 1
+		i, err := strconv.ParseInt(str[pos:len(str)], 10, 64)
+		if err != nil {
+			return 0, fmt.Errorf("unexpected time zone offset")
+		}
+		offset = int(i)*60*60
+	} else {
+		offset = 60*60
+	}
+	*t = t.In(time.FixedZone(str, offset))
+	return zoneLen, nil
 }
 
 func timeZoneFormatter(t *time.Time) ([]rune, error) {
