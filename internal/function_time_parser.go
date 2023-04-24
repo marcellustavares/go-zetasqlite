@@ -1073,32 +1073,35 @@ func yearFormatter(t *time.Time) ([]rune, error) {
 }
 
 func timeZoneParser(text []rune, t *time.Time) (int, error) {
-	const zoneLen = 3;
+	zoneLen := 3
 	if len(text) < zoneLen {
 		return 0, fmt.Errorf("unexpected time zone")
 	}
 	var offset int
 	str := string(text)
-	if strings.Contains(str, "-") {
-		pos := strings.LastIndex(str, "-") + 1
-		tokens := strings.Fields(str[pos:len(str)])
-		i, err := strconv.ParseInt(tokens[0], 10, 64)
+	token := strings.Fields(str)
+	zone := token[0]
+	zoneLen = len(zone)
+	if strings.Contains(zone, "-") {
+		pos := strings.LastIndex(zone, "-") + 1
+		zoneOffset := zone[pos:zoneLen]
+		i, err := strconv.ParseInt(zoneOffset, 10, 64)
 		if err != nil {
 			return 0, fmt.Errorf("unexpected time zone offset")
 		}
 		offset = int(i)*60*60
-	} else if strings.Contains(str, "+") {
-		pos := strings.LastIndex(str, "+") + 1
-		tokens := strings.Fields(str[pos:len(str)])
-		i, err := strconv.ParseInt(tokens[0], 10, 64)
+	} else if strings.Contains(zone, "+") {
+		pos := strings.LastIndex(zone, "+") + 1
+		zoneOffset := zone[pos:zoneLen]
+		i, err := strconv.ParseInt(zoneOffset, 10, 64)
 		if err != nil {
 			return 0, fmt.Errorf("unexpected time zone offset")
 		}
 		offset = int(-i)*60*60
 	} else {
-		offset = 60*60
+		offset = 0
 	}
-	*t = t.In(time.FixedZone(str, offset))
+	*t = t.In(time.FixedZone(zone, offset))
 	return zoneLen, nil
 }
 
