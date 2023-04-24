@@ -1081,14 +1081,16 @@ func timeZoneParser(text []rune, t *time.Time) (int, error) {
 	str := string(text)
 	if strings.Contains(str, "-") {
 		pos := strings.LastIndex(str, "-") + 1
-		i, err := strconv.ParseInt(str[pos:len(str)], 10, 64)
+		tokens := strings.Fields(str[pos:len(str)])
+		i, err := strconv.ParseInt(tokens[0], 10, 64)
 		if err != nil {
 			return 0, fmt.Errorf("unexpected time zone offset")
 		}
 		offset = int(i)*60*60
 	} else if strings.Contains(str, "+") {
 		pos := strings.LastIndex(str, "+") + 1
-		i, err := strconv.ParseInt(str[pos:len(str)], 10, 64)
+		tokens := strings.Fields(str[pos:len(str)])
+		i, err := strconv.ParseInt(tokens[0], 10, 64)
 		if err != nil {
 			return 0, fmt.Errorf("unexpected time zone offset")
 		}
