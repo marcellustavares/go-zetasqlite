@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"testing"
 
-	zetasqlite "github.com/goccy/go-zetasqlite"
+	zetasqlite "github.com/marcellustavares/go-zetasqlite"
 	"github.com/google/go-cmp/cmp"
 )
 
