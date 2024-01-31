@@ -1,7 +1,7 @@
 package zetasqlite_test
 
 import (
-	"github.com/goccy/go-zetasqlite"
+	"github.com/marcellustavares/go-zetasqlite"
 	"os"
 	"testing"
 	"time"
